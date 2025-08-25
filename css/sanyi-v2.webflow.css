@@ -1340,6 +1340,10 @@ form {
   display: inline;
 }
 
+.inline-link.regular.hide {
+  display: none;
+}
+
 .small-text {
   margin-top: 64px;
   font-size: 14px;
@@ -1994,23 +1998,29 @@ form {
 }
 
 .membersection {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
   background-color: #7fb1cf;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
   margin-top: 0;
+  margin-bottom: -36px;
   padding-bottom: 120px;
   display: flex;
-  position: sticky;
+  position: relative;
   top: 0;
 }
 
 .membersection.b {
   color: #000224;
   background-color: #0f2547;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
   display: flex;
   position: relative;
   top: auto;
@@ -2018,7 +2028,7 @@ form {
 
 .membersection.c {
   background-color: #17437e;
-  position: sticky;
+  position: relative;
 }
 
 .membersection.d {
@@ -2651,7 +2661,7 @@ form {
   }
 
   .membersection.b {
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     position: static;
   }
 
@@ -2818,8 +2828,10 @@ form {
   }
 
   .narrow-div {
+    flex-flow: column;
     padding-left: 16px;
     padding-right: 16px;
+    display: flex;
   }
 
   .h4 {
@@ -3038,14 +3050,21 @@ form {
   }
 
   .alt-team-container {
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
     flex-flow: column;
-    justify-content: flex-start;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: none;
     height: auto;
     margin-top: 48px;
     padding-left: 0;
     padding-right: 0;
-    display: none;
+    display: flex;
   }
 
   .fs-consent_banner_wrapper {
