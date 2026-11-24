@@ -1,0 +1,108 @@
+/* ==========================================================================
+   form-extras.css — contact form additions (date, location, phone)
+   Kept outside the Webflow export so a re-export does not overwrite it.
+   ========================================================================== */
+
+/* Each field + its "don't know" checkbox form one column of .div-block-11 */
+.field-group {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.field-group .text-field {
+  width: 100%;
+}
+
+/* Compact variant of the Webflow checkbox-field, used for "Még nem tudom" */
+.checkbox-field.unknown-field {
+  margin: -4px 0 12px;
+  padding-left: 0;
+  align-items: center;
+  display: flex;
+}
+
+.checkbox-field.unknown-field .checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  margin: 0 8px 0 0;
+}
+
+.checkbox-field.unknown-field .checkbox-label {
+  color: #00296b99;
+  cursor: pointer;
+  margin: 0;
+  font-size: 14px;
+  line-height: 120%;
+}
+
+/* A field switched off by its "Még nem tudom" checkbox.
+   Specificity note: webflow.css carries
+     .w-input[disabled]:not(.w-input-disabled) { background-color: #eeeeee }
+   at (0,3,0), so these rules match that weight and rely on load order. */
+.text-field.w-input:disabled:not(.w-input-disabled) {
+  color: #00296b4d;
+  background-color: #e8edf5;
+  border-color: #d4dcea;
+  cursor: not-allowed;
+}
+
+/* The Webflow export paints a near-white background on the placeholder itself
+   (.text-field::placeholder { background-color: #f7f9fc }), which showed
+   through a disabled field as a pale patch behind the text. Clear it, and dim
+   the placeholder too — `color` on the input does not reach ::placeholder. */
+.text-field.w-input:disabled::placeholder {
+  color: #00296b4d;
+  background-color: #0000;
+}
+
+/* Safari/Firefox vendor spellings of the same pseudo-element */
+.text-field.w-input:disabled::-webkit-input-placeholder {
+  color: #00296b4d;
+  background-color: #0000;
+}
+
+.text-field.w-input:disabled::-moz-placeholder {
+  color: #00296b4d;
+  background-color: #0000;
+  opacity: 1;
+}
+
+/* Date inputs render shorter than text inputs in some browsers */
+input[type="date"].text-field {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 12px;
+  font-size: 16px;
+}
+
+input[type="date"].text-field::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: .5;
+}
+
+/* Inline validation message, shown by form-extras.js */
+.field-error {
+  color: #c0392b;
+  margin: -6px 0 10px;
+  font-size: 14px;
+  line-height: 130%;
+  display: none;
+}
+
+.field-error.is-visible {
+  display: block;
+}
+
+.text-field.has-error,
+.textarea.has-error {
+  border-color: #c0392b;
+}
+
+/* Stack date and location on narrow screens.
+   Scoped to .field-row so the existing email/phone row keeps its layout. */
+@media screen and (max-width: 767px) {
+  .div-block-11.field-row {
+    flex-direction: column;
+  }
+}
